@@ -17,6 +17,8 @@ public class OdsContext extends AbstractOdfEmitterContext {
 
 	private Boolean hideGridlines;
 
+	private boolean largeOds = false;
+
 	public void setWrappingText(boolean wrappingText) {
 		this.wrappingText = wrappingText;
 	}
@@ -31,5 +33,13 @@ public class OdsContext extends AbstractOdfEmitterContext {
 
 	public void setHideGridlines(Boolean hideGridlines) {
 		this.hideGridlines = hideGridlines;
+	}
+
+	public void setLargeOds(boolean largeOds) {
+		this.largeOds = largeOds;
+	}
+
+	public boolean isLargeOds() {
+		return largeOds;
 	}
 }

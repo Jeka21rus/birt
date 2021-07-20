@@ -67,9 +67,14 @@ public class OdsLayoutEngine {
 
 	public static final String AUTO_GENERATED_BOOKMARK = "auto_generated_bookmark_";
 
-	private int maxRow = 65535;
+	public static final int MAX_ROW_CALC2 = 65535;
+	public static final int MAX_ROW_CALC3 = 1048576;
+	public static final int MAX_COL_CALC2 = 255;
+	public static final int MAX_COL_CALC3 = 1024;
 
-	private int maxCol = 255;
+	private int maxRow = MAX_ROW_CALC2;
+
+	private int maxCol = MAX_COL_CALC2;
 
 	private HashMap<String, String> cachedBookmarks = new HashMap<String, String>();
 
@@ -100,6 +105,10 @@ public class OdsLayoutEngine {
 	public OdsLayoutEngine(OdsContext context, OdsEmitter emitter) {
 		this.context = context;
 		this.emitter = emitter;
+		if (context.isLargeOds()) {
+			maxRow = MAX_ROW_CALC3;
+			maxCol = MAX_COL_CALC3;
+		}
 		this.locale = context.getLocale();
 		EngineResourceHandle resourceHandle = new EngineResourceHandle(locale);
 		messageFlashObjectNotSupported = resourceHandle.getMessage(MessageConstants.FLASH_OBJECT_NOT_SUPPORTED_PROMPT);

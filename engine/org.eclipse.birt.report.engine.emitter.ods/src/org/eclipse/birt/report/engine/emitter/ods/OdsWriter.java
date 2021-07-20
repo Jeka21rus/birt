@@ -81,9 +81,10 @@ public class OdsWriter implements IOdsWriter {
 			tempWriter.close();
 			BufferedReader reader = null;
 			try {
+				XMLWriter xmlWriter = writer.getWriter( );
+				xmlWriter.print(">"); // В случае множества вкладок остается некорректный тэг без закрывающей скобки <office:spreadsheet
 				reader = new BufferedReader(new FileReader(new File(tempFilePath)));
 				String line = reader.readLine();
-				XMLWriter xmlWriter = writer.getWriter();
 				while (line != null) {
 					xmlWriter.literal("\n");
 					xmlWriter.literal(line);

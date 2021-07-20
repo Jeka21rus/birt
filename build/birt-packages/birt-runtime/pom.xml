@@ -60,9 +60,9 @@
 						<configuration>
 							<target>
 								<ant antfile="build.xml" target="package" dir="${basedir}">
-									<property name="BIRT_VERSION" value="${unqualifiedVersion}-${maven.build.timestamp}" />
+									<property name="BIRT_VERSION" value="${unqualifiedVersion}-${maven.build.timestamp}-jdk8" />
 								</ant>
-								<attachartifact file="${project.build.directory}/birt-runtime-${unqualifiedVersion}-${maven.build.timestamp}.zip" type="zip" />
+								<attachartifact file="${project.build.directory}/birt-runtime-${unqualifiedVersion}-${maven.build.timestamp}-jdk8.zip" type="zip" />
 							</target>
 						</configuration>
 						<goals>
