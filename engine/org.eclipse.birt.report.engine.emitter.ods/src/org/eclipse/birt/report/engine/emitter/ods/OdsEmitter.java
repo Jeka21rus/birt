@@ -73,6 +73,7 @@ import com.ibm.icu.util.ULocale;
 public class OdsEmitter extends AbstractOdfEmitter
 {
 	public static final String MIME_TYPE = "application/vnd.oasis.opendocument.spreadsheet"; //$NON-NLS-1$
+	public static final String LARGE_ODS_FORMAT = "odsRenderOption.largeOds";
 
 	private boolean isAuto = true;
 
@@ -233,7 +234,7 @@ public class OdsEmitter extends AbstractOdfEmitter
 	{
 		IRenderOption renderOptions = service.getRenderOption( );
 		Object textWrapping = renderOptions.getOption(IExcelRenderOption.WRAPPING_TEXT);
-		if(textWrapping!=null && textWrapping instanceof Boolean)
+		if(textWrapping instanceof Boolean)
 		{
 			context.setWrappingText((Boolean)textWrapping);
 		}
@@ -244,13 +245,19 @@ public class OdsEmitter extends AbstractOdfEmitter
 		
 		Object hideGridlines = renderOptions
 				.getOption( IExcelRenderOption.HIDE_GRIDLINES );
-		if ( hideGridlines != null && hideGridlines instanceof Boolean )
+		if ( hideGridlines instanceof Boolean )
 		{
 			context.setHideGridlines( (Boolean) hideGridlines );
 		}
 		else
 		{
 			context.setHideGridlines( (Boolean) false );
+		}
+
+		Object multipleSheet = renderOptions
+				.getOption(LARGE_ODS_FORMAT);
+		if (multipleSheet instanceof Boolean) {
+			context.setLargeOds((Boolean) multipleSheet);
 		}
 	}
 
